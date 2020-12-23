@@ -84,6 +84,10 @@ TEST_CASE("tables/operator[]", "Check if operator[] retrieval and setting works 
 	};
 
 	REQUIRE_NOTHROW(assert1(lua.globals()));
+	
+	lua["testval"] = "testval";
+	REQUIRE(lua.globals().get<std::string>("testval") == "testval");
+	REQUIRE(lua.globals().raw_get<std::string>("testval") == "testval");
 }
 
 TEST_CASE("tables/operator[] valid", "Test if proxies on tables can lazily evaluate validity") {
